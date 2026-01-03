@@ -1,4 +1,5 @@
 import yfinance as yf
+import matplotlib.pyplot as plt
 import pandas as pd
 
 # The bank stocks whose performance I am interested in
@@ -15,3 +16,11 @@ for ticker in tickers:
     stock = yf.Ticker(ticker)
     info = stock.info
     print(f"{ticker}: {info.get('longName', 'Not found')} | Sector: {info.get('sector', 'N/A')}")
+usb_close = data["Close"]["USB"]
+
+usb_close.plot(figsize=(12, 6))
+plt.title("USB Closing Prices")
+plt.ylabel("Price ($)")
+plt.xlabel("Date")
+plt.grid(True, alpha=0.3)
+plt.show()
